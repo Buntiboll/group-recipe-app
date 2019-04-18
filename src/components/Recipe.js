@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Reviewform from './Reviewform';
 import { Link } from "react-router-dom";
 
 const API_KEY = "22cc7acaddbec2295e010551a7178dfb";
@@ -7,6 +7,12 @@ const API_KEY = "22cc7acaddbec2295e010551a7178dfb";
 class Recipe extends React.Component {
   state = {
     activeRecipe: []
+  }
+
+  saveReview = (e) => {
+    e.preventdefault();
+
+    // e.taget = form  saave to firebase
   }
   componentDidMount = async () => {
     const title = this.props.location.state.recipe;
@@ -33,6 +39,7 @@ class Recipe extends React.Component {
             <button className="active-recipe__button">
               <Link to="/">Go Home</Link>
             </button>
+            <Reviewform savereview={this.saveReview}/>
           </div>
         }
       </div>
