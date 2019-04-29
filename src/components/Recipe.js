@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Link } from "react-router-dom";
+import Reviewform from './Reviewform';
 
 const API_KEY = "22cc7acaddbec2295e010551a7178dfb";
 
@@ -33,6 +34,7 @@ class Recipe extends React.Component {
             <button className="active-recipe__button">
               <Link to="/">Go Home</Link>
             </button>
+            <Reviewform />
           </div>
         }
       </div>
