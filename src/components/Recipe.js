@@ -47,7 +47,9 @@ class Recipe extends React.Component {
             <button className="active-recipe__button">
               <Link to="/">Go Home</Link>
             </button>
+            <h2>Add review</h2>
             <Reviewform saveReview={this.saveReview} />
+           
           </div>
         }
       </div>
