@@ -6,8 +6,8 @@ import Form from "./components/Form";
 import Recipes from "./components/Recipes";
 
 //const API_KEY = "22cc7acaddbec2295e010551a7178dfb";
-const API_KEY = "3847b22beb032b2d3af026eb77adea83";
-
+//const API_KEY = "3847b22beb032b2d3af026eb77adea83";
+const API_KEY = "1560de1e40ab6b84339dce8cada1b843";
 class App extends Component {
   state = {
     recipes: []
