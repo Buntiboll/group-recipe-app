@@ -12,6 +12,7 @@ import Reviews from './Reviews';
 //const API_KEY = "3847b22beb032b2d3af026eb77adea83";
 const API_KEY = "1560de1e40ab6b84339dce8cada1b843";
 
+
 class Recipe extends React.Component {
  constructor () {
    super()
@@ -19,7 +20,8 @@ class Recipe extends React.Component {
   
 
    this.state = {
-    activeRecipe: ['test'],
+    activeRecipe: ['35120'],
+    
     reviews: [
       {id:12,
       reviewID: 'Sara',
@@ -39,27 +41,23 @@ class Recipe extends React.Component {
   
 
   saveReview = async (e) => {
-    
-    
-   
-
-    // Dessa ska sparas till firebase
 
     e.preventDefault();
     const reviewsRef = firebase.firestore().collection("reviews");
     reviewsRef.add({
-      recepeID: 34889,
+      recepeID: e.target.elements.review_recipe.value, //detta ska ändras till aktuellt receptID
+      id: 0, //detta måste ändras till ett automatiskt id
       reviewID: e.target.elements.review_name.value,
       reviewRating: e.target.elements.star.value,
       reviewText: e.target.elements.review_comment.value
     })
     .catch((error) => {
-        console.log("Error getting countries:", error);
+        console.log("Error getting reviews:", error);
     });
+    e.target.review_name.value = "";
+    //e.target.elements.star.ClearSelection();
+    e.target.elements.review_comment.value = "";
     
-
-
-
   }
   componentDidMount = async () => {
    
@@ -76,8 +74,10 @@ class Recipe extends React.Component {
         
     })
     .catch((error) => {
-        console.log("Error getting countries:", error);
+        console.log("Error getting reviews:", error);
     });
+
+    
     
 
     const title = this.props.location.state.recipe;
@@ -113,8 +113,8 @@ class Recipe extends React.Component {
               <Link to="/">Go Home</Link>
             </button>
             <h2>Add review</h2>
-            <Reviewform saveReview={this.saveReview} />
-            <Reviews reviewList={this.state.reviews}/>
+            <Reviewform saveReview={this.saveReview} recipeNo={this.state.activeRecipe}/>
+            <Reviews reviewList={this.state.reviews} recipeNo={this.state.activeRecipe}/>
           </div>
         }
       </div>

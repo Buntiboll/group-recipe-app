@@ -2,7 +2,9 @@ import React from 'react';
 
 const Reviewform = props => (
   <form onSubmit={props.saveReview} style={{ marginBottom:"2rem"}} id="reviewform">
+    <input className="form__input" type="hidden" name="review_recipe" value={props.recipeNo}/>
     <input className="form__input" type="text" name="review_name" placeholder="Name"/>
+    
     <input className="form__input" type="textfield" name="review_comment" placeholder="Comment"/>
     <div className="stars">
 
@@ -16,6 +18,9 @@ const Reviewform = props => (
   <label className="star star-2" htmlFor="star-2"></label>
   <input className="star star-1" id="star-1" type="radio" name="star" value={1}/>
   <label className="star star-1" htmlFor="star-1"></label>
+  
+
+
 
 </div>
     <button className="form__button">Submit</button>
