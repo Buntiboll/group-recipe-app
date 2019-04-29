@@ -18,7 +18,7 @@ class Recipe extends React.Component {
     const star = e.target.elements.star.value;
 
     // Dessa ska sparas till firebase
-    console.log(name + comment + star);
+    console.log(this.state.activeRecipe);
     e.preventDefault();
   }
   componentDidMount = async () => {
