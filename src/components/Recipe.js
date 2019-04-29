@@ -3,7 +3,8 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import Reviewform from './Reviewform';
 
-const API_KEY = "22cc7acaddbec2295e010551a7178dfb";
+//const API_KEY = "22cc7acaddbec2295e010551a7178dfb";
+const API_KEY = "3847b22beb032b2d3af026eb77adea83";
 
 class Recipe extends React.Component {
   state = {
@@ -14,7 +15,10 @@ class Recipe extends React.Component {
     
     const name = e.target.elements.review_name.value;
     const comment = e.target.elements.review_comment.value;
-    console.log(name + comment);
+    const star = e.target.elements.star.value;
+
+    // Dessa ska sparas till firebase
+    console.log(name + comment + star);
     e.preventDefault();
   }
   componentDidMount = async () => {
@@ -22,6 +26,7 @@ class Recipe extends React.Component {
     const req = await fetch(`https://cors-anywhere.herokuapp.com/http://food2fork.com/api/search?key=${API_KEY}&q=${title}`);
     
     const res = await req.json();
+    console.log(res);
     this.setState({ activeRecipe: res.recipes[0] });
     console.log(this.state.activeRecipe);
   }
