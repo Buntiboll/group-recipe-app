@@ -8,7 +8,7 @@ const Reviews = (props) => (
       if (review.recepeID === props.recipeNo[0]){
         return (
             <div key={review.id}>
-              <h2 >{review.reviewID}</h2>
+              <h4 >{review.reviewID}</h4>
               <p id="reviewRating">{review.reviewRating}</p>
               <p>{review.reviewText}</p>
           </div>
