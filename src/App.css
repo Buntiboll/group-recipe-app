@@ -1,5 +1,8 @@
+
+
 body {
-  background:#f3f3f3;
+  background:#e1dcc4;
+  padding-top: 1em;
 }
 
 img {
@@ -20,23 +23,45 @@ button:focus {
 }
 
 .App-header {
-  background-color: #2c3e50;
-  height: 90px;
+  background-color: #e1dcc4;
+  height: 11.5em;
   padding: 30px;
-  color: white;
+  color: black;
   margin-bottom: 2rem;
+
 }
+
+.App-description {
+  font-size: 1.3em;
+  padding: 1em;
+}
+
+
+
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 4em;
+  color: #a63838;
+  display: inline;
+  font-family: 'Merriweather', serif;
+
 }
 
+.App-title1 {
+  font-size: 4em;
+  color: #1b7d43;
+  display: inline;
+  font-family: 'Merriweather', serif;
+  font-weight: bold;
+
+}
+
+
 .recipe_buttons {
-  border: solid 2px #e74c3c;
+  color: #e74c3c;
   background: transparent;
   padding: 0.4rem 0.6rem;
   margin: 0 0.2rem;
-  border-radius: 1px;
   font-size: 0.8rem;
   text-transform: uppercase;
   font-weight: 500;
@@ -44,10 +69,11 @@ button:focus {
 }
 
 .recipes__box {
-  background: #fff;
+  background: rgb(238, 236, 227);
   padding-bottom: 2rem;
-  border-radius: 5px;
-  box-shadow: -1px 2px 34px -13px rgba(0,0,0,0.75);
+  border: 1px;
+  border-color: black;
+  border-style: double;
   text-align: left;
   overflow: hidden;
 }
@@ -57,7 +83,7 @@ button:focus {
 }
 
 .recipes__title {
-  color: #e74c3c;
+  color: #a63838;
   text-transform: uppercase;
   font-size: 1.1rem;
   padding: 1.8rem 0 0.2rem 0;
@@ -78,21 +104,24 @@ button:focus {
 }
 
 .form__input {
-  background: transparent;
+  background: white;
   border: 0;
-  border-bottom: solid 2px #2c3e50;
   margin-right: 10px;
   letter-spacing: 2px;
-  
   padding: 0.4rem;
 }
 
 .form__button {
-  border: solid 2px #e74c3c;
-  background: transparent;
+  color: white;
+  background: #a43232;
   padding: 0.2rem 0.9rem;
   margin: 0 0.2rem;
-  border-radius: 1px;
+
+  border-bottom-width: 0px;
+  border-right-width: 0px;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-radius: 50%;
   font-size: 1rem;
   text-transform: uppercase;
   font-weight: 500;

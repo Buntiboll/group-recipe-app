@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Reviewform from './Reviewform';
 
 //const API_KEY = "22cc7acaddbec2295e010551a7178dfb";
-const API_KEY = "3847b22beb032b2d3af026eb77adea83";
+const API_KEY = "22cc7acaddbec2295e010551a7178dfb";
 
 class Recipe extends React.Component {
   state = {
