@@ -9,6 +9,14 @@ class Recipe extends React.Component {
   state = {
     activeRecipe: []
   }
+
+  saveReview = async (e) => {
+    
+    const name = e.target.elements.review_name.value;
+    const comment = e.target.elements.review_comment.value;
+    console.log(name + comment);
+    e.preventDefault();
+  }
   componentDidMount = async () => {
     const title = this.props.location.state.recipe;
     const req = await fetch(`https://cors-anywhere.herokuapp.com/http://food2fork.com/api/search?key=${API_KEY}&q=${title}`);
@@ -34,7 +42,7 @@ class Recipe extends React.Component {
             <button className="active-recipe__button">
               <Link to="/">Go Home</Link>
             </button>
-            <Reviewform />
+            <Reviewform saveReview={this.saveReview} />
           </div>
         }
       </div>
