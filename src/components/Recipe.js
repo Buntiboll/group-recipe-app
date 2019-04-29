@@ -39,14 +39,14 @@ class Recipe extends React.Component {
   
     
   
-
+//==============SAVING DATA TO FIRESTORE=============//
   saveReview = async (e) => {
-
     e.preventDefault();
+    const ts = new Date();
     const reviewsRef = firebase.firestore().collection("reviews");
     reviewsRef.add({
-      recepeID: e.target.elements.review_recipe.value, //detta ska ändras till aktuellt receptID
-      id: 0, //detta måste ändras till ett automatiskt id
+      recepeID: e.target.elements.review_recipe.value, 
+      id: ts.toISOString(), 
       reviewID: e.target.elements.review_name.value,
       reviewRating: e.target.elements.star.value,
       reviewText: e.target.elements.review_comment.value
@@ -54,15 +54,24 @@ class Recipe extends React.Component {
     .catch((error) => {
         console.log("Error getting reviews:", error);
     });
+
+    //===========CLEAR FORM============//
+    console.log("rensar");
+    const form = e.target.elements;
     e.target.review_name.value = "";
-    //e.target.elements.star.ClearSelection();
-    e.target.elements.review_comment.value = "";
+    form.star[0].checked = false;
+    form.star[1].checked = false;
+    form.star[2].checked = false;
+    form.star[3].checked = false;
+    form.star[4].checked = false;
+    form.review_comment.value = "";
     
   }
+
   componentDidMount = async () => {
-   
+    //=================GETTING DATA FROM FIRESTORE==============//
     const rev = [];
-    const reviewsRef = firebase.firestore().collection("reviews");
+    const reviewsRef = firebase.firestore().collection("reviews").orderBy("id", "desc");
     reviewsRef.get()
     .then((snapshot) => {
         snapshot.docs.forEach(doc => {
@@ -79,7 +88,7 @@ class Recipe extends React.Component {
 
     
     
-
+    //====================GETTING DATA FROM API==============//
     const title = this.props.location.state.recipe;
     const req = await fetch(`https://cors-anywhere.herokuapp.com/http://food2fork.com/api/search?key=${API_KEY}&q=${title}`);
     
@@ -98,6 +107,7 @@ class Recipe extends React.Component {
   render() {
     const recipe = this.state.activeRecipe;
     return (
+      //=================WRITING OUT RECIPE PAGE ======//
       <div className="container">
         { this.state.activeRecipe.length !== 0 &&
           <div className="active-recipe">
