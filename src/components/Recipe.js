@@ -19,10 +19,10 @@ class Recipe extends React.Component {
   
 
    this.state = {
-    activeRecipe: [],
+    activeRecipe: ['test'],
     reviews: [
       {id:12,
-      name: 'Sara',
+      reviewID: 'Sara',
       reviewRating: 5,
       reviewText: 'Mina kommentarer'},
       {
@@ -72,7 +72,14 @@ class Recipe extends React.Component {
     
     const res = await req.json();
     console.log(res);
-    this.setState({ activeRecipe: res.recipes[0] });
+    
+    try {
+      this.setState({ activeRecipe: res.recipes[0] });
+    }
+    catch (error) {
+      console.error(error);
+    }
+    
     console.log(this.state.activeRecipe);
   }
   render() {
