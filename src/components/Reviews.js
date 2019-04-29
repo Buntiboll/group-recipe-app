@@ -4,6 +4,7 @@ const Reviews = (props) => (
     <div>
         {console.log(props.reviewList[0].name)}
         { props.reviewList.map((review) => {
+      
       return (
           <div key={review.id}>
             <h2 >{review.reviewID}</h2>

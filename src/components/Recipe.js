@@ -40,13 +40,26 @@ class Recipe extends React.Component {
 
   saveReview = async (e) => {
     
-    const name = e.target.elements.review_name.value;
-    const comment = e.target.elements.review_comment.value;
-    const star = e.target.elements.star.value;
+    
+   
 
     // Dessa ska sparas till firebase
-    console.log(this.state.activeRecipe);
+
     e.preventDefault();
+    const reviewsRef = firebase.firestore().collection("reviews");
+    reviewsRef.add({
+      recepeID: 34889,
+      reviewID: e.target.elements.review_name.value,
+      reviewRating: e.target.elements.star.value,
+      reviewText: e.target.elements.review_comment.value
+    })
+    .catch((error) => {
+        console.log("Error getting countries:", error);
+    });
+    
+
+
+
   }
   componentDidMount = async () => {
    
