@@ -3,14 +3,30 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import Reviewform from './Reviewform';
 
+
+import firebase from '../Config';
+
+
 //const API_KEY = "22cc7acaddbec2295e010551a7178dfb";
-//const API_KEY = "3847b22beb032b2d3af026eb77adea83";
-const API_KEY = "1560de1e40ab6b84339dce8cada1b843";
+const API_KEY = "3847b22beb032b2d3af026eb77adea83";
+//const API_KEY = "1560de1e40ab6b84339dce8cada1b843";
 
 class Recipe extends React.Component {
-  state = {
-    activeRecipe: []
-  }
+ constructor () {
+   super()
+
+  
+
+   this.state = {
+    activeRecipe: [],
+    name: 'Sara',
+    reviewRating: 5,
+    reviewText: 'Mina kommentarer'
+   }
+ }
+  
+    
+  
 
   saveReview = async (e) => {
     
@@ -23,6 +39,31 @@ class Recipe extends React.Component {
     e.preventDefault();
   }
   componentDidMount = async () => {
+    // this.database.on('value', snap => {
+    //   this.setState({
+    //     reviewRating: snap.val()
+    //   });
+    // });
+    
+    
+      // reviewsRef = database.ref('reviews');
+      // reviewsRef.on('value', function(snapshot) {
+      //   handleSnapshot(snapshot.val());
+      // });
+    console.log();
+    const reviewsRef = firebase.firestore().collection("reviews");
+    reviewsRef.get()
+    .then((snapshot) => {
+        snapshot.docs.forEach(doc => {
+          this.state.name = doc.data().reviewID;
+            this.state.reviewRating = doc.data().reviewRating;
+            this.state.reviewText = doc.data().reviewText;
+        })
+    })
+    .catch((error) => {
+        console.log("Error getting countries:", error);
+    });
+
     const title = this.props.location.state.recipe;
     const req = await fetch(`https://cors-anywhere.herokuapp.com/http://food2fork.com/api/search?key=${API_KEY}&q=${title}`);
     
@@ -50,7 +91,9 @@ class Recipe extends React.Component {
             </button>
             <h2>Add review</h2>
             <Reviewform saveReview={this.saveReview} />
-           
+           <h3>{this.state.name}</h3>
+           <h4>Rating: {this.state.reviewRating}</h4>
+           <p>{this.state.reviewText}</p>
           </div>
         }
       </div>
