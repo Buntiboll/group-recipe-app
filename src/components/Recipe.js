@@ -110,7 +110,7 @@ class Recipe extends React.Component {
               <span><a href={recipe.publisher_url}>{recipe.publisher_url}</a></span>
             </p>
             <button className="active-recipe__button">
-              <Link to="/">Go Home</Link>
+              <Link to="/">Back</Link>
             </button>
             <h2>Add review</h2>
             <Reviewform saveReview={this.saveReview} />

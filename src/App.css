@@ -1,5 +1,4 @@
 
-
 body {
   background:#e1dcc4;
   padding-top: 1em;
@@ -11,7 +10,7 @@ img {
 }
 
 a {
-  color: #e74c3c !important;
+  color: #000000;
 }
 
 button:focus {
@@ -80,26 +79,28 @@ button:focus {
 
 .recipe__text {
   margin-left: 15px;
+  font-size: 4em;
 }
 
 .recipes__title {
   color: #a63838;
   text-transform: uppercase;
-  font-size: 1.1rem;
+  font-size: 2rem;
   padding: 1.8rem 0 0.2rem 0;
+  font-weight: bold;
 }
 
 .recipes__subtitle {
   text-transform: uppercase;
   font-weight: 600;
-  font-size: 0.8rem;
+  font-size: 1.3rem;
   letter-spacing: 2px;
 }
 
 .recipes__subtitle span {
   text-transform: none;
   font-weight: 400;
-  font-size: 0.8rem;
+  font-size: 1.2rem;
   letter-spacing: 1px;
 }
 
@@ -109,20 +110,38 @@ button:focus {
   margin-right: 10px;
   letter-spacing: 2px;
   padding: 0.4rem;
+  margin-bottom: 1em;
 }
+
+.submit__button {
+color: white;
+background: #a43232;
+padding: 0.2rem 1.2rem;
+margin: 0, 0.5rem;
+
+border-bottom-width: 0px;
+border-right-width: 0px;
+border-top-width: 0px;
+border-left-width: 0px;
+border-radius: 50%;
+font-size: 2rem;
+text-transform: uppercase;
+font-weight: 500;
+margin-left: 0.7rem;
+}
+
 
 .form__button {
   color: white;
   background: #a43232;
   padding: 0.2rem 0.9rem;
-  margin: 0 0.2rem;
-
+  margin: 0 0.5rem;
   border-bottom-width: 0px;
   border-right-width: 0px;
   border-top-width: 0px;
   border-left-width: 0px;
   border-radius: 50%;
-  font-size: 1rem;
+  font-size: 1.8rem;
   text-transform: uppercase;
   font-weight: 500;
   margin-left: 0.7rem;
@@ -134,10 +153,12 @@ input[type="text"] {
 
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px #f3f3f3 inset;
-  -webkit-text-fill-color: #2c3e50 !important;
+  -webkit-text-fill-color:#2c3e50 !important;
 }
 
 /******** RECIPE.js ********/
+
+
 
 .active-recipe {
   margin: 0 auto;
@@ -176,15 +197,24 @@ input:-webkit-autofill {
 }
 
 .active-recipe__button {
-  border: solid 2px #e74c3c;
-  background: transparent;
+  border-bottom-width: 0px;
+  border-right-width: 0px;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  background: #a43232;
+  color: white;
   padding: 0.2rem 0.9rem;
   margin: 0 0.2rem;
-  border-radius: 1px;
-  font-size: 1rem;
+  font-size: 1.5rem;
   text-transform: uppercase;
-  font-weight: 500;
+  border-radius: 50%
+
 }
+
+.active-recipe__button a{
+  color: white;
+}
+
 @import url(https://fonts.googleapis.com/css?family=Roboto:500,100,300,700,400);
 div.stars{
  
