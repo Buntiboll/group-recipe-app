@@ -12,6 +12,7 @@ import Reviews from './Reviews';
 //const API_KEY = "3847b22beb032b2d3af026eb77adea83";
 const API_KEY = "1560de1e40ab6b84339dce8cada1b843";
 
+
 class Recipe extends React.Component {
  constructor () {
    super()
@@ -19,7 +20,8 @@ class Recipe extends React.Component {
   
 
    this.state = {
-    activeRecipe: ['test'],
+    activeRecipe: ['35120'],
+    
     reviews: [
       {id:12,
       reviewID: 'Sara',
@@ -37,34 +39,39 @@ class Recipe extends React.Component {
   
     
   
-
+//==============SAVING DATA TO FIRESTORE=============//
   saveReview = async (e) => {
-    
-    
-   
-
-    // Dessa ska sparas till firebase
-
     e.preventDefault();
+    const ts = new Date();
     const reviewsRef = firebase.firestore().collection("reviews");
     reviewsRef.add({
-      recepeID: 34889,
+      recepeID: e.target.elements.review_recipe.value, 
+      id: ts.toISOString(), 
       reviewID: e.target.elements.review_name.value,
       reviewRating: e.target.elements.star.value,
       reviewText: e.target.elements.review_comment.value
     })
     .catch((error) => {
-        console.log("Error getting countries:", error);
+        console.log("Error getting reviews:", error);
     });
+
+    //===========CLEAR FORM============//
+    console.log("rensar");
+    const form = e.target.elements;
+    e.target.review_name.value = "";
+    form.star[0].checked = false;
+    form.star[1].checked = false;
+    form.star[2].checked = false;
+    form.star[3].checked = false;
+    form.star[4].checked = false;
+    form.review_comment.value = "";
     
-
-
-
   }
+
   componentDidMount = async () => {
-   
+    //=================GETTING DATA FROM FIRESTORE==============//
     const rev = [];
-    const reviewsRef = firebase.firestore().collection("reviews");
+    const reviewsRef = firebase.firestore().collection("reviews").orderBy("id", "desc");
     reviewsRef.get()
     .then((snapshot) => {
         snapshot.docs.forEach(doc => {
@@ -76,10 +83,12 @@ class Recipe extends React.Component {
         
     })
     .catch((error) => {
-        console.log("Error getting countries:", error);
+        console.log("Error getting reviews:", error);
     });
-    
 
+    
+    
+    //====================GETTING DATA FROM API==============//
     const title = this.props.location.state.recipe;
     const req = await fetch(`https://cors-anywhere.herokuapp.com/http://food2fork.com/api/search?key=${API_KEY}&q=${title}`);
     
@@ -98,6 +107,7 @@ class Recipe extends React.Component {
   render() {
     const recipe = this.state.activeRecipe;
     return (
+      //=================WRITING OUT RECIPE PAGE ======//
       <div className="container">
         { this.state.activeRecipe.length !== 0 &&
           <div className="active-recipe">
@@ -113,8 +123,8 @@ class Recipe extends React.Component {
               <Link to="/">Back</Link>
             </button>
             <h2>Add review</h2>
-            <Reviewform saveReview={this.saveReview} />
-            <Reviews reviewList={this.state.reviews}/>
+            <Reviewform saveReview={this.saveReview} recipeNo={this.state.activeRecipe}/>
+            <Reviews reviewList={this.state.reviews} recipeNo={this.state.activeRecipe}/>
           </div>
         }
       </div>
