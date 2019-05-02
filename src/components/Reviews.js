@@ -17,11 +17,7 @@ const Reviews = (props) => (
               <p>{review.reviewText}</p>
           </div>
         );
-      } else {
-          return (
-              <div></div>
-          )
-      }
+      } 
       
     })}
 
