@@ -3,9 +3,13 @@ import React from 'react';
 
 
 const Reviews = (props) => (
-    <div> 
-        { props.reviewList.map((review) => {
-      if (review.recepeID === props.recipeNo[0]){
+    <div>   
+       
+        
+        {       
+            props.reviewList.map((review) => {   
+      if (review.recepeID === props.recipeNo){
+          console.log(review.recepeID);
         return (
             <div key={review.id}>
               <h4 >{review.reviewID}</h4>
@@ -20,6 +24,7 @@ const Reviews = (props) => (
       }
       
     })}
+
         
     </div>
     

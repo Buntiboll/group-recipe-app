@@ -9,8 +9,8 @@ import Reviews from './Reviews';
 
 
 //const API_KEY = "22cc7acaddbec2295e010551a7178dfb";
-//const API_KEY = "3847b22beb032b2d3af026eb77adea83";
-const API_KEY = "1560de1e40ab6b84339dce8cada1b843";
+const API_KEY = "3847b22beb032b2d3af026eb77adea83";
+//const API_KEY = "1560de1e40ab6b84339dce8cada1b843";
 
 
 class Recipe extends React.Component {
@@ -20,7 +20,7 @@ class Recipe extends React.Component {
   
 
    this.state = {
-    activeRecipe: ['35120'],
+    activeRecipe: [],
     
     reviews: [
       {id:12,
@@ -44,6 +44,7 @@ class Recipe extends React.Component {
     e.preventDefault();
     const ts = new Date();
     const reviewsRef = firebase.firestore().collection("reviews");
+    console.log("detta är det aktuella receptet som sparas" + e.target.elements.review_recipe.value);
     reviewsRef.add({
       recepeID: e.target.elements.review_recipe.value, 
       id: ts.toISOString(), 
@@ -54,6 +55,9 @@ class Recipe extends React.Component {
     .catch((error) => {
         console.log("Error getting reviews:", error);
     });
+
+    
+  
 
     //===========CLEAR FORM============//
     console.log("rensar");
@@ -106,9 +110,11 @@ class Recipe extends React.Component {
   }
   render() {
     const recipe = this.state.activeRecipe;
+    
     return (
       //=================WRITING OUT RECIPE PAGE ======//
       <div className="container">
+     
         { this.state.activeRecipe.length !== 0 &&
           <div className="active-recipe">
             <img className="active-recipe__img" src={recipe.image_url} alt={recipe.title}/>
@@ -123,8 +129,9 @@ class Recipe extends React.Component {
               <Link to="/">Go Home</Link>
             </button>
             <h2>Add review</h2>
-            <Reviewform saveReview={this.saveReview} recipeNo={this.state.activeRecipe}/>
-            <Reviews reviewList={this.state.reviews} recipeNo={this.state.activeRecipe}/>
+            
+            <Reviewform saveReview={this.saveReview} recipeNo={recipe.recipe_id}/>
+            <Reviews reviewList={this.state.reviews} recipeNo={recipe.recipe_id}/>
           </div>
         }
       </div>
